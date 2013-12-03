@@ -1,7 +1,7 @@
 ArnosThickInTheHead
 ===================
 
-prior-based cortical thickness
+prior-based cortical thickness ... in the data directory, do the following:
 
 ```
 ThresholdImage 3 ch2bet.nii.gz mask.nii.gz 10 1.e9
