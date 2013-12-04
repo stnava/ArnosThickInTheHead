@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Arnosthickinthehead</title>
+  <meta name="description" content="prior-based cortical thickness ">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Arnosthickinthehead</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">prior-based cortical thickness </p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/stnava/ArnosThickInTheHead/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/stnava/ArnosThickInTheHead/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/stnava/ArnosThickInTheHead" class="code">View Arnosthickinthehead on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
+<a name="arnosthickinthehead" class="anchor" href="#arnosthickinthehead"><span class="octicon octicon-link"></span></a>ArnosThickInTheHead</h1>
+
+<p>prior-based cortical thickness ... in the data directory, do the following:</p>
+
+<pre><code>ThresholdImage 3 ch2bet.nii.gz mask.nii.gz 10 1.e9
+
+Atropos -d 3 -x mask.nii.gz -a ch2bet.nii.gz  -i kmeans[3] -o [seg.nii.gz,seg_prob%02d.nii.gz] 
+
+ThresholdImage 3 seg.nii.gz cortex.nii.gz 2 2 
+
+MultiplyImages 3 cortex.nii.gz aal.nii.gz aal_cortex.nii.gz
+
+ResampleImageBySpacing 3 aal_cortex.nii.gz aal_cortex_big.nii.gz 0.5 0.5 0.5 0 0 1 
+
+ImageMath 3 aal_thick.nii.gz LabelThickness aal_cortex_big.nii.gz 
+
+ResampleImageBySpacing 3 aal_thick.nii.gz aal_thicks.nii.gz 1 1 1 0 0 1 
+
+gradd=0.075
+
+th=0.999
+
+KellyKapowski -d 3 -s [seg.nii.gz,2,3] -g seg_prob02.nii.gz -w seg_prob03.nii.gz -o pthick.nii.gz -c [45,0.0,10] -r $gradd -m 1.5 -n 10 -t $th -a aal_thicks.nii.gz
+
+
+</code></pre>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/stnava" class="avatar"><img src="https://1.gravatar.com/avatar/948c3f7aad7a55b0a53956aee8d25fce?d=https%3A%2F%2Fidenticons.github.com%2F7a7b65b4103ecd3659e65ecc8193851c.png&amp;r=x&amp;s=60" width="48" height="48"/></a> <a href="https://github.com/stnava">stnava</a> maintains <a href="https://github.com/stnava/ArnosThickInTheHead">Arnosthickinthehead</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/stnava/ArnosThickInTheHead/tarball/master" class="tar">tar</a><a href="https://github.com/stnava/ArnosThickInTheHead/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
