@@ -24,5 +24,13 @@ th=0.999
 
 KellyKapowski -d 3 -s [seg.nii.gz,2,3] -g seg_prob02.nii.gz -w seg_prob03.nii.gz -o pthick.nii.gz -c [45,0.0,10] -r $gradd -m 1.5 -n 10 -t $th -a aal_thicks.nii.gz
 
+ImageMath 3 aal_thick.nii.gz LabelThickness2 aal_cortex_big.nii.gz 
+
+ResampleImageBySpacing 3 aal_thick.nii.gz aal_thicks2.nii.gz 1 1 1 0 0 1 
+
+KellyKapowski -d 3 -s [seg.nii.gz,2,3] -g seg_prob02.nii.gz -w seg_prob03.nii.gz -o pthick2.nii.gz -c [45,0.0,10] -r $gradd -m 1.5 -n 10 -t $th -a aal_thicks2.nii.gz
+
+KellyKapowski -d 3 -s [seg.nii.gz,2,3] -g seg_prob02.nii.gz -w seg_prob03.nii.gz -o thick.nii.gz -c [45,0.0,10] -r $gradd -m 1.5 -n 10 -t $th 
+
 
 ```
